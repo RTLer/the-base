@@ -133,7 +133,9 @@ foreach($users as $i=>$user) {
 
 // function haye kar ba array
 //http://php.net/manual/en/ref.array.php
-
+// is_array, explode, implode, split, array_reverse,
+// array_chunk, array_keys, array_values, sort
+// array_merge, array_shift, array_unshift, array_pop, array_push
 
 ?>
 </pre>

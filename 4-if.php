@@ -7,10 +7,10 @@
   <input type="text" name="a" value="">
   <br>
   variable b:<br>
-  <input type="text" name="lastname" value="">
+  <input type="text" name="b" value="">
   <br>
   variable op:<br>
-  <input type="text" name="lastname" value="">
+  <input type="text" name="op" value="">
   <br><br>
   <input type="submit" value="Submit">
 </form>

@@ -15,6 +15,11 @@ class CreateRatesTable extends Migration
     {
         Schema::create('rates', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->unsignedInteger('user_id');
+            $table->tinyInteger('rate');
+            $table->text('comment');
+
             $table->timestamps();
         });
     }

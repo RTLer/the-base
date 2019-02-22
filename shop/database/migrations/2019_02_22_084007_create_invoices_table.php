@@ -15,6 +15,12 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->unsignedInteger('user_id');
+            $table->string('transaction_key');
+            $table->unsignedBigInteger('settled_amount');
+            $table->tinyInteger('status');
+
             $table->timestamps();
         });
     }

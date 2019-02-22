@@ -1,0 +1,70 @@
+users
+-- id int a_i unsighted
+-- name text
+-- email tinytext
+-- password tinytext
+-- gender tinytext
+-- created_at timestamp
+-- updated_at timestamp
+
+product_categories
+-- id int a_i unsighted
+-- parent_id int unsighted
+-- name tinytext
+-- slug tinytext
+-- created_at timestamp
+-- updated_at timestamp
+
+products
+-- id int a_i unsighted
+-- category_id int unsighted
+-- user_id int unsighted
+-- name tinytext
+-- code tinytext
+-- price bigint
+-- description text
+-- image text
+-- created_at
+-- updated_at
+
+shopping_carts
+-- id int a_i unsighted
+-- user_id int unsighted
+-- product_id int unsighted
+-- count int
+-- created_at timestamp
+-- updated_at timestamp
+
+invoices
+-- id int a_i unsighted
+-- user_id int unsighted
+-- transaction_key tinytext
+-- settled_amount bigint unsighted
+-- status tinyint
+-- created_at timestamp
+-- updated_at timestamp
+
+invoice_items
+-- id int a_i unsighted
+-- invoice_id int unsighted
+-- product_id tinytext
+-- count tinyint
+-- status tinyint
+-- created_at timestamp
+-- updated_at timestamp
+
+likes
+-- id int a_i unsighted
+-- user_id int unsighted
+-- created_at timestamp
+-- updated_at timestamp
+
+rates
+-- id int a_i unsighted
+-- user_id int unsighted
+-- rate tinyint unsighted
+-- comment tinytext
+-- created_at timestamp
+-- updated_at timestamp
+
+

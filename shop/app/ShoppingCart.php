@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductCategories extends Model
+class ShoppingCart extends Model
 {
     public $fillable = [
-        'parent_id',
-        'name',
-        'slug',
+        'user_id',
+        'product_id',
+        'count',
     ];
 }

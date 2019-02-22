@@ -4,11 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductCategories extends Model
+class Like extends Model
 {
     public $fillable = [
-        'parent_id',
-        'name',
-        'slug',
+        'user_id',
     ];
 }

@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('main_page');
-});
+Route::get('/', 'HomeController@index');
+
+
+Route::get('/admin/product', 'Admin\ProductController@index');
+Route::get('/admin/product/create', 'Admin\ProductController@create');
+Route::post('/admin/product/create', 'Admin\ProductController@store');

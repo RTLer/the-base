@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::redirect('/landing', '/');
 //Route::get('/', 'HomeController@index');
 Route::view('/', 'welcome');

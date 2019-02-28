@@ -14,13 +14,14 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(App\Product::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'gender' => $faker->randomElement(['f','m']),
-        'email_verified_at' => now(),
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-        'remember_token' => Str::random(10),
+        'category_id'=>$faker->numberBetween(1,100),
+        'user_id'=>null,
+        'name'=> $faker->sentence,
+        'code'=> $faker->numberBetween(100,9999),
+        'price'=> $faker->numberBetween(100,99999),
+        'description'=>$faker->paragraph,
+        'image'=>$faker->imageUrl($width = 640, $height = 480),
     ];
 });

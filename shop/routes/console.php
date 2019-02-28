@@ -18,6 +18,9 @@ Artisan::command('inspire', function () {
 })->describe('Display an inspiring quote');
 
 Artisan::command('test', function () {
-    dd(\DB::table('product_categories')->where('slug','test')->first());
+
+    \App\User::query()
+        ->where('id', 4)
+        ->update(['is_admin' => true]);
 })->describe('testing database');
 

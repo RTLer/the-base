@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductUpdate;
 use \App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -25,7 +26,7 @@ class ProductController extends Controller
         return view('admin.product.create');
     }
 
-    public function store(ProductStore $request)
+    public function store(Request $request)
     {
         $inputs = $request->all();
         $inputs['user_id'] = 1;

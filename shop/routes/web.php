@@ -17,23 +17,31 @@ Route::redirect('/landing', '/');
 //Route::get('/', 'HomeController@index');
 Route::view('/', 'welcome');
 
-Route::name('admin.')->prefix('/admin')->namespace('Admin')->group(function () {
-    Route::name('product.')->prefix('/product')->group(function () {
+Route::name('admin.')
+    ->prefix('/admin')
+    ->middleware(['auth', 'is_admin'])
+    ->namespace('Admin')
+    ->group(function () {
+        Route::name('product.')->prefix('/product')->group(function () {
 
-        Route::get('/', 'ProductController@index')
-            ->name('index');
+            Route::get('/', 'ProductController@index')
+                ->name('index');
 
-        Route::get('/create', 'ProductController@create')
-            ->name('create');
-        Route::post('/create', 'ProductController@store')
-            ->name('store');
+            Route::get('/create', 'ProductController@create')
+                ->name('create');
+            Route::post('/create', 'ProductController@store')
+                ->name('store');
 
-        Route::get('/edit', 'ProductController@edit')
-            ->name('edit');
-        Route::post('/edit', 'ProductController@update')
-            ->name('update');
+            Route::get('/edit', 'ProductController@edit')
+                ->name('edit');
+            Route::post('/edit', 'ProductController@update')
+                ->name('update');
 
-        Route::get('/product/delete/{id}', 'ProductController@destroy')
-            ->name('delete');
+            Route::get('/product/delete/{id}', 'ProductController@destroy')
+                ->name('delete');
+        });
     });
-});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

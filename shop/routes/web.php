@@ -11,21 +11,27 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::redirect('/landing', '/');
+//Route::get('/', 'HomeController@index');
+Route::view('/', 'welcome');
 
+Route::name('admin.')->prefix('/admin')->namespace('Admin')->group(function () {
+    Route::name('product.')->prefix('/product')->group(function () {
 
-Route::get('/admin/product', 'Admin\ProductController@index')
-    ->name('admin.product.index');
-Route::get('/admin/product/create', 'Admin\ProductController@create');
-Route::post(
-    '/admin/product/create',
-    'Admin\ProductController@store'
-)->name('admin.product.create');
+        Route::get('/', 'ProductController@index')
+            ->name('index');
 
-Route::get('/admin/product/edit/{id}', 'Admin\ProductController@edit')
-    ->name('admin.product.edit');
-Route::post('/admin/product/edit/{id}', 'Admin\ProductController@update')
-    ->name('admin.product.update');
+        Route::get('/create', 'ProductController@create')
+            ->name('create');
+        Route::post('/create', 'ProductController@store')
+            ->name('store');
 
-Route::get('/admin/product/delete/{id}', 'Admin\ProductController@destroy')
-    ->name('admin.product.delete');
+        Route::get('/edit', 'ProductController@edit')
+            ->name('edit');
+        Route::post('/edit', 'ProductController@update')
+            ->name('update');
+
+        Route::get('/product/delete/{id}', 'ProductController@destroy')
+            ->name('delete');
+    });
+});

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\ProductEdit;
 use App\Http\Requests\ProductStore;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductUpdate;
 use \App\Product;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -39,9 +41,9 @@ class ProductController extends Controller
         return redirect()->route('admin.product.index');
     }
 
-    public function edit($id)
+    public function edit(ProductEdit $request)
     {
-        $product = Product::query()->where('id', $id)->first();
+        $product = Product::query()->where('id', $request->get('id'))->first();
         return view('admin.product.edit',
             [
                 'product'=>$product
@@ -49,9 +51,9 @@ class ProductController extends Controller
         );
     }
 
-    public function update($id, ProductUpdate $request){
+    public function update(ProductUpdate $request){
         $product = Product::query()
-            ->where('id', $id)
+            ->where('id', $request->get('id'))
             ->first();
         $product->fill($request->all());
         $product->save();

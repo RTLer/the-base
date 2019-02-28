@@ -5,7 +5,8 @@
     <div class="col-12">
 
         <a class="btn" href="{{route('admin.product.create')}}">add new one</a>
-    <table>
+
+        <table>
         <tr>
             <th>name</th>
             <th>code</th>

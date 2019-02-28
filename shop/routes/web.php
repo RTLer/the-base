@@ -14,6 +14,18 @@
 Route::get('/', 'HomeController@index');
 
 
-Route::get('/admin/product', 'Admin\ProductController@index');
+Route::get('/admin/product', 'Admin\ProductController@index')
+    ->name('admin.product.index');
 Route::get('/admin/product/create', 'Admin\ProductController@create');
-Route::post('/admin/product/create', 'Admin\ProductController@store');
+Route::post(
+    '/admin/product/create',
+    'Admin\ProductController@store'
+)->name('admin.product.create');
+
+Route::get('/admin/product/edit/{id}', 'Admin\ProductController@edit')
+    ->name('admin.product.edit');
+Route::post('/admin/product/edit/{id}', 'Admin\ProductController@update')
+    ->name('admin.product.update');
+
+Route::get('/admin/product/delete/{id}', 'Admin\ProductController@destroy')
+    ->name('admin.product.delete');

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductUpdate;
 use \App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
@@ -28,29 +29,15 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $inputs = $request->all();
-        $inputs['user_id'] = auth()->id();
-
         auth()->user()->products()->create([
             'category_id' => $request->get('category_id', 1),
             'name' => $request->get('name'),
             'code' => $request->get('code'),
             'price' => $request->get('price'),
             'description' => $request->get('description'),
-            'image' => $request->get('image',''),
+            'image' => $request->get('image', ''),
         ]);
 
-
-
-        Product::query()->create([
-            'category_id' => $request->get('category_id', 1),
-            'user_id' => $request->get('user_id', 1),
-            'name' => $request->get('name'),
-            'code' => $request->get('code'),
-            'price' => $request->get('price'),
-            'description' => $request->get('description'),
-            'image' => $request->get('image',''),
-        ]);
         return redirect()->route('admin.product.index');
     }
 
@@ -59,22 +46,26 @@ class ProductController extends Controller
         $product = Product::query()->find($request->get('id'));
         return view('admin.product.edit',
             [
-                'product'=>$product
+                'product' => $product,
             ]
         );
     }
 
-    public function update(ProductUpdate $request){
+    public function update(ProductUpdate $request)
+    {
         $product = Product::query()->find($request->get('id'));
         $product->fill($request->all());
         $product->save();
+
+        Log::info('user: ' . auth()->id() . 'edited product: ' . $product->id);
 
         return redirect()->route('admin.product.index');
     }
 
 
-    public function destroy($id){
-        Product::query()->where('id',$id)->delete();
+    public function destroy($id)
+    {
+        Product::query()->where('id', $id)->delete();
 
         return redirect()->route('admin.product.index');
     }

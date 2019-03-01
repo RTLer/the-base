@@ -17,9 +17,10 @@ class DatabaseSeeder extends Seeder
                 'parent_id' => $cat->id,
             ]);
         });
-        factory(App\User::class, 50)->create()->each(function ($user) {
+        factory(App\User::class, 50)->create()->each(function ($user) use($cats) {
             factory(App\Product::class, 2)->create([
                 'user_id' => $user->id,
+                'category_id' => $cats->random()->id,
             ]);
         });
 

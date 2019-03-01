@@ -6,7 +6,7 @@
         <form method="post">
             @csrf
             <div class="form-group {{$errors->has('category_id')?' has-danger':''}} ">
-                <label for="exampleInputEmail1">category</label>
+                <label for="exampleInputEmail1">{{__('admin.edit.category')}}</label>
                 <input type="text" name="category_id" value="{{old('category_id', $product->category_id)}}" class="form-control{{$errors->has('category_id')?' form-control-danger':''}} " id="category" aria-describedby="emailHelp" placeholder="name">
                 @if($errors->has('category_id'))
                     <div class="form-control-feedback">{{$errors->first('category_id')}}</div>

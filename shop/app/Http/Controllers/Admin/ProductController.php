@@ -14,7 +14,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::query()->get();
+        $products = Product::query()->simplePaginate(20);
 
         return view('admin.product.index', [
             'products' => $products,
@@ -29,7 +29,19 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->all();
-        $inputs['user_id'] = 1;
+        $inputs['user_id'] = auth()->id();
+
+        auth()->user()->products()->create([
+            'category_id' => $request->get('category_id', 1),
+            'name' => $request->get('name'),
+            'code' => $request->get('code'),
+            'price' => $request->get('price'),
+            'description' => $request->get('description'),
+            'image' => $request->get('image',''),
+        ]);
+
+
+
         Product::query()->create([
             'category_id' => $request->get('category_id', 1),
             'user_id' => $request->get('user_id', 1),
@@ -44,7 +56,7 @@ class ProductController extends Controller
 
     public function edit(ProductEdit $request)
     {
-        $product = Product::query()->where('id', $request->get('id'))->first();
+        $product = Product::query()->find($request->get('id'));
         return view('admin.product.edit',
             [
                 'product'=>$product
@@ -53,9 +65,7 @@ class ProductController extends Controller
     }
 
     public function update(ProductUpdate $request){
-        $product = Product::query()
-            ->where('id', $request->get('id'))
-            ->first();
+        $product = Product::query()->find($request->get('id'));
         $product->fill($request->all());
         $product->save();
 

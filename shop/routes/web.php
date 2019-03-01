@@ -16,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/landing', '/');
 //Route::get('/', 'HomeController@index');
 Route::view('/', 'welcome');
+Route::name('front.')
+    ->namespace('Front')
+    ->group(function () {
+        Route::name('product.')->prefix('/product')->group(function () {
+            Route::get('/', 'ProductController@index')
+                ->name('index');
+        });
+    });
 
 Route::name('admin.')
     ->prefix('/admin')

@@ -21,21 +21,21 @@
             </div>
             <div class="form-group {{$errors->has('code')?' has-danger':''}} ">
                 <label for="exampleInputEmail1">code</label>
-                <input type="text" name="code" autocomplete="off" class="form-control{{$errors->has('code')?' form-control-danger':''}} " id="code" aria-describedby="emailHelp" placeholder="code">
+                <input type="text" name="code" value="{{old('code')}}"  class="form-control{{$errors->has('code')?' form-control-danger':''}} " id="code" aria-describedby="emailHelp" placeholder="code">
                 @if($errors->has('code'))
                     <div class="form-control-feedback">{{$errors->first('code')}}</div>
                 @endif
             </div>
             <div class="form-group {{$errors->has('price')?' has-danger':''}} ">
                 <label for="exampleInputEmail1">price</label>
-                <input type="text" name="price" class="form-control{{$errors->has('price')?' form-control-danger':''}} " id="price" aria-describedby="emailHelp" placeholder="price">
+                <input type="text" name="price" value="{{old('price')}}" class="form-control{{$errors->has('price')?' form-control-danger':''}} " id="price" aria-describedby="emailHelp" placeholder="price">
                 @if($errors->has('price'))
                     <div class="form-control-feedback">{{$errors->first('price')}}</div>
                 @endif
             </div>
             <div class="form-group {{$errors->has('description')?' has-danger':''}} ">
                 <label for="exampleInputEmail1">description</label>
-                <input type="text" name="description" class="form-control{{$errors->has('description')?' form-control-danger':''}} " id="description" aria-describedby="emailHelp" placeholder="description">
+                <input type="text" name="description" value="{{old('description')}}" class="form-control{{$errors->has('description')?' form-control-danger':''}} " id="description" aria-describedby="emailHelp" placeholder="description">
                 @if($errors->has('description'))
                     <div class="form-control-feedback">{{$errors->first('description')}}</div>
                 @endif

@@ -14,7 +14,14 @@
 @include('admin.layouts.header')
 
 <div class="container">
-    @yield('content')
+    <div class="row">
+        <div class="col-9">
+            @yield('content')
+        </div>
+        <div class="col-3">
+            @include('admin.layouts.sidebar')
+        </div>
+    </div>
 </div>
 
 @include('admin.layouts.footer')

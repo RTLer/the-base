@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductCategories extends Model
+class ProductCategory extends Model
 {
     public $fillable = [
         'parent_id',

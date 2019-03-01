@@ -37,7 +37,25 @@ Route::name('admin.')
             Route::post('/edit', 'ProductController@update')
                 ->name('update');
 
-            Route::get('/product/delete/{id}', 'ProductController@destroy')
+            Route::get('/delete/{id}', 'ProductController@destroy')
+                ->name('delete');
+        });
+        Route::name('productCategory.')->prefix('/productCategory')->group(function () {
+
+            Route::get('/', 'ProductCategoryController@index')
+                ->name('index');
+
+            Route::get('/create', 'ProductCategoryController@create')
+                ->name('create');
+            Route::post('/create', 'ProductCategoryController@store')
+                ->name('store');
+
+            Route::get('/edit', 'ProductCategoryController@edit')
+                ->name('edit');
+            Route::post('/edit', 'ProductCategoryController@update')
+                ->name('update');
+
+            Route::get('/delete/{id}', 'ProductCategoryController@destroy')
                 ->name('delete');
         });
     });

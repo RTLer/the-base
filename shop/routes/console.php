@@ -18,9 +18,11 @@ Artisan::command('inspire', function () {
 })->describe('Display an inspiring quote');
 
 Artisan::command('test', function () {
-
     \App\User::query()
-        ->where('id', 4)
+        ->where('email', 'hooman64457@gmail.com')
         ->update(['is_admin' => true]);
+    dd(\App\User::query()
+//        ->where('email', 'hooman6445@gmail.com')
+        ->get()->pluck('is_admin','email'));
 })->describe('testing database');
 

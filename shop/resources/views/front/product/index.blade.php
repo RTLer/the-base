@@ -12,7 +12,7 @@
                                 <h4 class="card-title">{{$product->name}}</h4>
                                 <p class="card-text">{{number_format($product->price)}}</p>
                                 <p class="card-text">{{$product->description}}</p>
-                                <a href="#" class="btn btn-primary">view</a>
+                                <a href="{{ route('front.product.show',['id'=>$product->id]) }}" class="btn btn-primary">view</a>
                             </div>
                         </div>
                     </div>

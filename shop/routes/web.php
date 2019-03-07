@@ -11,6 +11,9 @@
 |
 */
 
+
+
+
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/landing', '/');
@@ -22,6 +25,19 @@ Route::name('front.')
         Route::name('product.')->prefix('/product')->group(function () {
             Route::get('/', 'ProductController@index')
                 ->name('index');
+            Route::get('/show/{id}', 'ProductController@show')
+                ->name('show');
+        });
+        Route::name('cart.')
+        ->prefix('/cart')
+        ->middleware(['auth'])
+        ->group(function () {
+            Route::post('/addToCart', 'CartController@addToCart')
+                ->name('add');
+            Route::get('/', 'CartController@index')
+                ->name('index');
+            Route::get('/remove/{id}', 'CartController@destroy')
+                ->name('destroy');
         });
     });
 

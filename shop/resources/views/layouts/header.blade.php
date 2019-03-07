@@ -19,6 +19,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
             </li>
+            @foreach($categories as $category)
+            <li class="nav-item ">
+                <a class="nav-link">{{$category->name}}</a>
+            </li>
+            @endforeach
 
         @guest
                 <li class="nav-item">
@@ -50,8 +55,8 @@
             @endguest
         </ul>
 
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        <form class="form-inline my-2 my-lg-0" action="{{route('front.product.index')}}">
+            <input class="form-control mr-sm-2" type="text" value="{{request()->get('search')}}" name="search" placeholder="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>

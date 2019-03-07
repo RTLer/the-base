@@ -21,6 +21,7 @@ class CreateShoppingCartsTable extends Migration
             $table->unsignedInteger('count');
             
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

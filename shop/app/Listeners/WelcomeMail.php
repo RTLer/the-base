@@ -25,6 +25,6 @@ class WelcomeMail
      */
     public function handle($event)
     {
-        //
+        dispatch(new \App\Jobs\WelcomeUser($event->user));
     }
 }

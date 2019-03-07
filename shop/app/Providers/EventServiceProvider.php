@@ -17,6 +17,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+            \App\Listeners\WelcomeMail::class,
         ],
         \App\Events\NewItemAddedToCart::class=>[
             \App\Listeners\EmailUserOnNewCart::class,

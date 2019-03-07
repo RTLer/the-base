@@ -27,15 +27,18 @@ class AppServiceProvider extends ServiceProvider
     {
         \DB::enableQueryLog();
 
-        $categoires = cache()->remember(
-            'parentCategories',
-            1,
-            function (){
-                return ProductCategory::query()
-                    ->whereNull('parent_id')
-                    ->get();
-            }
-        );
-        View::share('categories', $categoires);
+
+        if(!app()->runningInConsole()){
+            $categoires = cache()->remember(
+                'parentCategories',
+                1,
+                function (){
+                    return ProductCategory::query()
+                        ->whereNull('parent_id')
+                        ->get();
+                }
+            );
+            View::share('categories', $categoires);
+        }
     }
 }

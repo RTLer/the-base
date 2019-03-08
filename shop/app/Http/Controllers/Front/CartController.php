@@ -27,6 +27,12 @@ class CartController extends Controller
         }
 
         event(new \App\Events\NewItemAddedToCart($item));
+        $this->dispatch(new WelcomeUser(auth()->user()));
+
+        dispatch(new WelcomeUser(auth()->user()));
+
+        WelcomeUser::dispatch($this->user);
+
 
         return redirect()->route('front.cart.index');
     }

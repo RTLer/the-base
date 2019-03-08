@@ -34,6 +34,11 @@ class WelcomeUser implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->user)->send(new \App\Mail\WelcomeUser($this->user));
+        try{
+            Mail::to($this->user)->send(new \App\Mail\WelcomeUser($this->user));
+        }catch(\Exception $e){
+            self::dispatch($this->user)
+            ->delay(now()->addMinutes(10));
+        }
     }
 }
